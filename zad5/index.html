@@ -93,6 +93,34 @@
         </ol>
     </section>
 
+	<section>
+        <h2>Formularz kontaktowy</h2>
+
+        <form id="contactForm" novalidate>
+            <label>Imię:
+                <input type="text" id="firstName" required pattern="^[A-Za-zÀ-ž\s-]+$">
+                <div class="error" id="firstNameError"></div>
+            </label>
+
+            <label>Nazwisko:
+                <input type="text" id="lastName" required pattern="^[A-Za-zÀ-ž\s-]+$">
+                <div class="error" id="lastNameError"></div>
+            </label>
+
+            <label>E-mail:
+                <input type="email" id="email" required>
+                <div class="error" id="emailError"></div>
+            </label>
+
+            <label>Wiadomość:
+                <textarea id="message" required></textarea>
+                <div class="error" id="messageError"></div>
+            </label>
+
+            <button type="submit">Wyślij</button>
+        </form>
+    </section>
+	
 </main>
 
 <footer>
