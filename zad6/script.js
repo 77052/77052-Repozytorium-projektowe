@@ -80,3 +80,25 @@ document.getElementById('contactForm').addEventListener('submit', function(e) { 
         this.reset();
     }
 });
+
+fetch('./data.json')
+    .then(response => response.json())
+    .then(data => {
+
+        const UmiejętnościList = document.getElementById('UmiejętnościList');
+
+        data.umiejetnosci.forEach(skill => {
+            const li = document.createElement('li');
+            li.textContent = skill;
+            skillsList.appendChild(li);
+        });
+
+        const ProjektyList = document.getElementById('ProjektyList');
+
+        data.projekty.forEach(project => {
+            const li = document.createElement('li');
+            li.textContent = project;
+            projectsList.appendChild(li);
+        });
+
+    });
