@@ -102,3 +102,53 @@ fetch('./data.json')
         });
 
     });
+
+let tasks = [];
+
+function loadTasks() {
+    const data = localStorage.getItem("tasks");
+    if (data) {
+        tasks = JSON.parse(data);
+    }
+    renderTasks();
+}
+
+function saveTasks() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function renderTasks() {
+    const list = document.getElementById("taskList");
+    list.innerHTML = "";
+
+    tasks.forEach((task, index) => {
+        const li = document.createElement("li");
+        li.textContent = task;
+        const btn = document.createElement("button");
+        btn.textContent = "Usuń";
+        btn.onclick = () => deleteTask(index);
+        li.appendChild(btn);
+        list.appendChild(li);
+    });
+}
+
+function addTask() {
+    const input = document.getElementById("taskInput");
+    const value = input.value.trim();
+
+    if (value === "") return;
+
+    tasks.push(value);
+    input.value = "";
+
+    saveTasks();
+    renderTasks();
+}
+
+function deleteTask(index) {
+    tasks.splice(index, 1);
+    saveTasks();
+    renderTasks();
+}
+
+document.addEventListener("DOMContentLoaded", loadTasks);
