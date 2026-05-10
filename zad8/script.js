@@ -96,8 +96,22 @@ document.getElementById('contactForm').addEventListener('submit', function(e) { 
     }
 
     if (valid) {
-        alert('Poprawnie uzupełniono formularz');
-        this.reset();
+
+        addDoc(collection(db, "Formularz"), {
+            firstName,
+            lastName,
+            email,
+            message,
+            createdAt: new Date()
+        })
+        .then(() => {
+            alert('Wiadomość została wysłana');
+            document.getElementById('contactForm').reset();
+        })
+        .catch((error) => {
+            console.error(error);
+            alert('Błąd podczas wysyłania');
+        });
     }
 });
 
